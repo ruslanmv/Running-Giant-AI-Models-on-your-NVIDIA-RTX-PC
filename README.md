@@ -57,6 +57,24 @@ Not all giant AI models are created equal. Some are more resource-intensive than
 
 If your gaming PC struggles to handle the model you want, consider using cloud computing resources. Platforms like Google Colab, Amazon SageMaker, and RunPod offer powerful GPUs that can handle even the largest models.
 
+For Google Colab you can try with:
+```bash
+# Install necessary packages
+!pip install transformers accelerate bitsandbytes torch torchvision torchaudio
+
+# Optionally install xformers for potential speedups 
+# (sometimes it helps, sometimes it doesn't, so experiment!)
+!pip install xformers
+
+# If you want to use a specific version of PyTorch with CUDA support, uncomment the following lines:
+# This example installs PyTorch 2.0.1 with CUDA 11.8
+# !pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Check if you have a GPU and its specs
+!nvidia-smi
+```
+
+
 **Tips and Tricks**
 
 * **Keep your software updated:**  New versions of libraries often include performance improvements.
@@ -163,7 +181,7 @@ print(tokenizer.decode(generated_ids[0], skip_special_tokens=True))
 
 ---
 
-### 2. GPT-NeoX: A Massive Language Model
+### 6. GPT-NeoX: A Massive Language Model
 
 EleutherAI's GPT-NeoX is a powerful language model that excels at a wide range of tasks, from generating creative text formats to answering your questions in a comprehensive and informative way.  
 
@@ -188,7 +206,7 @@ generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
 print(generated_text)
 ```
 
-### 3. Mixtral: The Efficient Giant
+### 7. Mixtral: The Efficient Giant
 
 Mixtral, developed by Mistral AI, is a powerhouse language model known for its impressive performance and efficiency. It's designed to deliver excellent results while requiring fewer computational resources compared to other models of similar size.
 
@@ -214,7 +232,7 @@ print(generated_text)
 ```
 ---
 
-### **2. Phi-3 (4k Context)**
+### **8. Phi-3 (4k Context)**
 Phi-3 is optimized for lightweight inference with extended context capabilities.
 
 ```python
@@ -235,22 +253,31 @@ print(tokenizer.decode(generated_ids[0], skip_special_tokens=True))
 
 **Multimodal Models: Seeing and Understanding**
 These models combine different data types, like text and images.
-**1. BLIP-2**
-BLIP-2 excels at image captioning and question answering:
+
+### **9. BLIP-2**
+BLIP-2 excels in image captioning and visual question answering.
+
 ```python
 from transformers import Blip2Processor, Blip2ForConditionalGeneration
 from PIL import Image
+
 # Load the processor and model
-processor = Blip2Processor.from_pretrained("Salesforce/blip-2-opt-2.7b")
-model = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip-2-opt-2.7b", torch_dtype=torch.float16, device_map="auto")
-# Load and preprocess the image
-image = Image.open("image.jpg")
-inputs = processor(text="a photo of a cat", images=image, return_tensors="pt").to(model.device)
-# Generate caption
-generated_ids = model.generate(**inputs)
+model_id = "Salesforce/blip-2-opt-2.7b"
+processor = Blip2Processor.from_pretrained(model_id)
+model = Blip2ForConditionalGeneration.from_pretrained(model_id, device_map="auto", torch_dtype=torch.float16)
+
+# Perform inference
+image_path = "cat_photo.jpg"
+image = Image.open(image_path)
+
+inputs = processor(images=image, text="Describe this image.", return_tensors="pt").to(model.device)
+generated_ids = model.generate(**inputs, max_length=100)
 print(processor.batch_decode(generated_ids, skip_special_tokens=True)[0])
 ```
-**2. Pix2Struct**
+
+
+
+**10. Pix2Struct**
 Pix2Struct is a multimodal model that processes structured information from images.
 Pix2Struct can understand the structure of images and answer questions about them:
 ```python
@@ -269,7 +296,7 @@ print(processor.batch_decode(generated_ids, skip_special_tokens=True)[0])
 
 ---
 
-### 3. Pixtral-12B: The Multimodal Maestro
+### 11. Pixtral-12B: The Multimodal Maestro
 
 Get ready to witness the magic of Mistral AI's Pixtral-12B, a multimodal model that seamlessly blends text and images. This powerful AI can understand the content of an image and generate human-like text descriptions, answer your questions about it, or even create stories inspired by it.
 
@@ -296,7 +323,7 @@ generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)
 print(generated_text)
 ```
 
-### **5. Kosmos-3**
+### **12. Kosmos-3**
 Kosmos-3 expands upon Kosmos-2 with improved multimodal understanding and reasoning.
 
 ```python
@@ -318,34 +345,10 @@ generated_ids = model.generate(**inputs, max_length=100)
 print(tokenizer.decode(generated_ids[0], skip_special_tokens=True))
 ```
 
----
-
-### **6. BLIP-2**
-BLIP-2 excels in image captioning and visual question answering.
-
-```python
-from transformers import Blip2Processor, Blip2ForConditionalGeneration
-from PIL import Image
-
-# Load the processor and model
-model_id = "Salesforce/blip-2-opt-2.7b"
-processor = Blip2Processor.from_pretrained(model_id)
-model = Blip2ForConditionalGeneration.from_pretrained(model_id, device_map="auto", torch_dtype=torch.float16)
-
-# Perform inference
-image_path = "cat_photo.jpg"
-image = Image.open(image_path)
-
-inputs = processor(images=image, text="Describe this image.", return_tensors="pt").to(model.device)
-generated_ids = model.generate(**inputs, max_length=100)
-print(processor.batch_decode(generated_ids, skip_special_tokens=True)[0])
-```
-
----
 
 
 
-#### **6. Llama 3.2 90B Vision**
+#### **13. Llama 3.2 90B Vision**
 Llama 3.2 90B Vision is a multimodal model that combines image and text understanding.
 
 ```python
@@ -369,7 +372,7 @@ print(processor.batch_decode(generated_ids, skip_special_tokens=True)[0])
 
 **Diffusion Models: Creating from Noise**
 These models generate stunning images and videos.
-**1. Stable Diffusion XL**
+**14. Stable Diffusion XL**
 SDXL is a powerhouse for image generation:
 ```python
 from diffusers import StableDiffusionXLPipeline
@@ -381,7 +384,7 @@ prompt = "A majestic lion with a flowing mane, standing on a rocky outcrop overl
 image = pipe(prompt).images[0]
 image.save("lion.png")
 ```
-**2. DeepFloyd IF**
+**15. DeepFloyd IF**
 DeepFloyd IF excels at creating photorealistic images:
 ```python
 from diffusers import DiffusionPipeline
@@ -391,7 +394,7 @@ pipe = DiffusionPipeline.from_pretrained("deepfloyd/IF-I-XL-v1.0", torch_dtype=t
 # Generate an image (similar to Stable Diffusion XL)
 # ...
 ```
-**3. Video Diffusion XL**
+**16. Video Diffusion XL**
 Video Diffusion XL is designed for generating high-quality videos. It’s highly VRAM-intensive, so an A100 or higher is recommended:
 ```python
 from diffusers import VideoDiffusionPipeline
