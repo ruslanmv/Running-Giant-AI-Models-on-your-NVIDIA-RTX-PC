@@ -163,30 +163,55 @@ print(tokenizer.decode(generated_ids[0], skip_special_tokens=True))
 
 ---
 
+### 2. GPT-NeoX: A Massive Language Model
 
-**2. GPT-NeoX**
-EleutherAI's GPT-NeoX is another popular choice:
+EleutherAI's GPT-NeoX is a powerful language model that excels at a wide range of tasks, from generating creative text formats to answering your questions in a comprehensive and informative way.  
+
+Here's how to get started with GPT-NeoX:
+
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
+
 # Load the tokenizer and model
-model_id = "EleutherAI/gpt-neox-20b"
+model_id = "EleutherAI/gpt-neox-20b" 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto")
-# Generate text (same as above)
-# ...
+
+# Prepare the input text
+prompt = "The quick brown fox jumps over the lazy dog."
+inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+
+# Generate text
+outputs = model.generate(**inputs)
+generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+print(generated_text)
 ```
-**3. Mixtral**
-Mixtral is known for its efficiency. Here's how to use it:
+
+### 3. Mixtral: The Efficient Giant
+
+Mixtral, developed by Mistral AI, is a powerhouse language model known for its impressive performance and efficiency. It's designed to deliver excellent results while requiring fewer computational resources compared to other models of similar size.
+
+Here's how you can harness the power of Mixtral:
+
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
+
 # Load the tokenizer and model
 model_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto")
-# Generate text (same as above)
-# ...
-```
 
+# Prepare the input text
+prompt = "In a world where cats rule the internet, tell me a story about a brave dog who becomes a viral sensation."
+inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+
+# Generate text
+outputs = model.generate(**inputs)
+generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+print(generated_text)
+```
 ---
 
 ### **2. Phi-3 (4k Context)**
