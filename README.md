@@ -575,6 +575,6 @@ If you're running into VRAM limitations, especially on the RTX 4090, consider th
 * **Quantization:** Use 8-bit or even 4-bit quantization to reduce model size.
 * **Offloading:** Move parts of the model or computations to the CPU or disk.
 * **Parameter-Efficient Fine-Tuning (PEFT):** Fine-tune large models with minimal memory overhead.
-**Conclusion**
+## **Conclusion**
 Even with a gaming PC, you can explore the fascinating world of giant AI models. By understanding the capabilities of your hardware and employing optimization techniques, you can unlock incredible possibilities. And if you need even more power, Google Colab's A100 GPUs provide a readily accessible option.
 So, dive in, experiment, and see what you can create!
