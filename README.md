@@ -2,9 +2,6 @@
 The world of AI is exploding, with massive language models (LLMs), mind-bending multimodal AIs, and stunning diffusion models creating images and videos like never before. But these cutting-edge models often need serious hardware. 
 Good news! You might already have some of that power in your gaming rig. In this guide, we'll explore how to run these giants on your own machine (with an RTX 4090 or the upcoming RTX 5090), and how that compares to using Google Colab's powerful A100 GPUs.
 
-```markdown
-## Running Giant AI Models on Your Gaming PC (and in the Cloud!)
-
 **Setting Up Your Environment**
 
 First, make sure you have a solid Python environment. If you're new to this, I recommend using Miniconda or Anaconda to manage your packages and environments.
