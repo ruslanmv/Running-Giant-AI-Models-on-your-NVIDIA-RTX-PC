@@ -6,37 +6,48 @@ Good news! You might already have some of that power in your gaming rig. In this
 
 First, make sure you have a solid Python environment. If you're new to this, I recommend using Miniconda or Anaconda to manage your packages and environments.
 
-```bash
-# Install Miniconda (if you don't have it already)
+## Setting Up Your AI Playground: Installing Miniconda
 
-# For Linux:
+Before we dive into the exciting world of giant AI models, let's set up a proper environment on your machine. We recommend using Miniconda, a lightweight package and environment manager that's perfect for this purpose.
+
+**Here's how to install Miniconda:**
+
+**For Linux:**
+
+```bash
 wget [https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh) -O miniconda.sh
 bash miniconda.sh -b -p $HOME/miniconda
 echo "export PATH=\"$HOME/miniconda/bin:\$PATH\"" >> ~/.bashrc
 source ~/.bashrc
+```
 
-# For macOS:
+**For macOS:**
+
+```bash
 curl [https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh) -o miniconda.sh
 bash miniconda.sh -b -p $HOME/miniconda
 echo "export PATH=\"$HOME/miniconda/bin:\$PATH\"" >> ~/.zshrc
 source ~/.zshrc
+```
 
-# For Windows:
-# Download the installer from [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
-# Run the installer and follow the instructions
+**For Windows:**
 
-# Create a new environment
+1. Download the installer from [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
+2. Run the installer and follow the instructions.
+
+**Creating a dedicated environment:**
+
+Once Miniconda is installed, let's create a separate environment for our AI projects. This helps keep things organized and prevents conflicts between different projects.
+
+```bash
+# Create a new environment named "ai_models" with Python 3.9
 conda create -n ai_models python=3.9
 
 # Activate the environment
 conda activate ai_models
 ```
 
-Now, let's install the essential libraries:
-
-```bash
-pip install transformers accelerate bitsandbytes torch torchvision torchaudio
-```
+Now you're all set to install the necessary libraries and start experimenting with giant AI models!
 
 **Optimizing for Limited VRAM**
 
