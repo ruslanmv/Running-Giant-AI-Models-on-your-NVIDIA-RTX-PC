@@ -95,7 +95,9 @@ For Google Colab you can try with:
 
 **LLMs: Talking the Talk**
 Let's start with LLMs, the engines behind chatbots and text generation.
-**1. LLaMA 2**
+
+#### **1. Llama 2 7B**
+
 Meta's LLaMA 2 is a powerful open-source LLM. Here's how to run it:
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -286,9 +288,9 @@ generated_ids = model.generate(**inputs, max_length=100)
 print(processor.batch_decode(generated_ids, skip_special_tokens=True)[0])
 ```
 
+### **10. Pix2Struct**
 
 
-**10. Pix2Struct**
 Pix2Struct is a multimodal model that processes structured information from images.
 Pix2Struct can understand the structure of images and answer questions about them:
 ```python
@@ -380,7 +382,7 @@ print(processor.batch_decode(generated_ids, skip_special_tokens=True)[0])
 
 Diffusion models have revolutionized the way we generate images and videos. These models work by gradually adding noise to an image until it becomes pure noise, and then learning to reverse this process to generate new images from random noise.
 
-### 1. Stable Diffusion XL: The Image Generation Powerhouse
+### 14. Stable Diffusion XL: The Image Generation Powerhouse
 
 Stable Diffusion XL (SDXL) is a leading example of a diffusion model that pushes the boundaries of image generation. It's known for producing high-quality images with incredible detail and realism.
 
@@ -405,7 +407,7 @@ image = pipe(prompt).images[0]
 image.save("lion.png")
 ```
 
-### 2. DeepFloyd IF: The Photorealistic Image Maestro
+### 15. DeepFloyd IF: The Photorealistic Image Maestro
 
 DeepFloyd IF, developed by Stability AI, is another remarkable diffusion model that specializes in generating stunningly photorealistic images. It's particularly adept at handling complex scenes, intricate details, and even text within images.
 
@@ -429,7 +431,7 @@ prompt = "A photorealistic image of a futuristic cityscape with flying cars and 
 image = pipe(prompt).images[0]
 image.save("futuristic_city.png")
 ```
-**16. Video Diffusion XL**
+### **16. Video Diffusion XL**
 
 Prepare to be amazed by Video Diffusion XL, a cutting-edge model that brings your dynamic visions to life. This powerful AI generates high-quality videos from text prompts, pushing the boundaries of creative expression.
 
