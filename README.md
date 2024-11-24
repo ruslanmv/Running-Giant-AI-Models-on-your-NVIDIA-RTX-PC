@@ -571,8 +571,6 @@ download_file(model_url, model_filename)
 ---
 
 
-
-
 **Optimizing for Your Hardware**
 If you're running into VRAM limitations, especially on the RTX 4090, consider these techniques:
 * **
