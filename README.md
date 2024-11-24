@@ -570,11 +570,9 @@ download_file(model_url, model_filename)
 
 ---
 
-
 **Optimizing for Your Hardware**
 If you're running into VRAM limitations, especially on the RTX 4090, consider these techniques:
-* **
-Quantization:** Use 8-bit or even 4-bit quantization to reduce model size.
+* **Quantization:** Use 8-bit or even 4-bit quantization to reduce model size.
 * **Offloading:** Move parts of the model or computations to the CPU or disk.
 * **Parameter-Efficient Fine-Tuning (PEFT):** Fine-tune large models with minimal memory overhead.
 **Conclusion**
